@@ -1,5 +1,7 @@
 public class Main {
     public static void main(String[] args) {
+
+        // Test MyArrayList
         MyList<Integer> myList = new MyArrayList<>();
 
         // Test add() method
@@ -47,6 +49,41 @@ public class Main {
         // Test sort() method
         myList.sort();
         System.out.println("After sorting: " + myList);
+
+
+        // Test MyLinkedList
+        MyList<String> list = new MyLinkedList<>();
+        list.add("Apple");
+        list.add("Banana");
+        list.add("Cherry");
+        list.add("Durian");
+        list.add("Elderberry");
+
+        System.out.println("Size of the list: " + list.size());
+        System.out.println("List contains \"Apple\": " + list.contains("Apple"));
+        System.out.println("List contains \"Mango\": " + list.contains("Mango"));
+        System.out.println("Item at index 3: " + list.get(3));
+        System.out.println("Index of \"Durian\": " + list.indexOf("Durian"));
+        System.out.println("Last index of \"Banana\": " + list.lastIndexOf("Banana"));
+
+        System.out.println("Removing \"Cherry\" from list...");
+        list.remove("Cherry");
+        System.out.println("Size of the list: " + list.size());
+        System.out.println("Index of \"Cherry\": " + list.indexOf("Cherry"));
+
+        System.out.println("Adding \"Grapes\" to index 2...");
+        list.add("Grapes", 2);
+        System.out.println("Size of the list: " + list.size());
+        System.out.println("Item at index 2: " + list.get(2));
+
+        System.out.println("Removing item at index 4...");
+        list.remove(4);
+        System.out.println("Size of the list: " + list.size());
+        System.out.println("Item at index 4: " + list.get(4));
+
+        System.out.println("Clearing the list...");
+        list.clear();
+        System.out.println("Size of the list: " + list.size());
     }
 
 }
