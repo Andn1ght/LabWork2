@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class MyArrayList<T> implements MyList<T>{
     private T[] list;
     private int size;
@@ -33,15 +35,14 @@ public class MyArrayList<T> implements MyList<T>{
         return false;
     }
 
-    private boolean isFull() {
-        if(size == list.length)
-            return true;
-        else
-            return false;
-    }
-
     public void add(T item) {
-        add(item, size);
+
+        if (isFull()) {
+            increaseBuffer();
+        }
+
+        list[size] = item;
+        size++;
     }
 
     public void add(T item, int index) {
@@ -52,23 +53,12 @@ public class MyArrayList<T> implements MyList<T>{
             increaseBuffer();
         }
 
-        for (int i = size - 1; i >= index; i--) {
-            list[i+1] = list[i];
+        for (int i = size; i > index; i--) {
+            list[i] = list[i - 1];
         }
 
         list[index] = item;
         size++;
-    }
-
-    public void increaseBuffer(){
-
-        T[] newArr = (T[]) new Object[list.length * 2];
-
-        for (int i = 0; i < list.length; i++) {
-            newArr[i] = (T) list[i];
-        }
-
-        list = newArr;
     }
 
     public boolean remove(T item) {
@@ -99,13 +89,6 @@ public class MyArrayList<T> implements MyList<T>{
         list[size] = null;
 
         return removedItem;
-    }
-
-    private void checkIndex(int index) {
-
-        if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
-        }
     }
 
     public void clear() {
@@ -145,25 +128,31 @@ public class MyArrayList<T> implements MyList<T>{
     }
 
     public void sort() {
-        bubbleSort(this.list);
+        Arrays.sort(list, 0, size);
     }
 
-    private void bubbleSort(T[] arr) {
-        boolean sorted = false;
-        int length = arr.length;
-        T temp;
+    public void increaseBuffer(){
 
-        while (!sorted) {
-            sorted = true;
-            for (int i = 0; i < length - 1; i++) {
-                if (((Comparable<T>) arr[i]).compareTo(arr[i + 1]) > 0) {
-                    temp = arr[i];
-                    arr[i] = arr[i + 1];
-                    arr[i + 1] = temp;
-                    sorted = false;
-                }
-            }
-            length--;
+        T[] newArr = (T[]) new Object[list.length * 2];
+
+        for (int i = 0; i < list.length; i++) {
+            newArr[i] = (T) list[i];
         }
+
+        list = newArr;
+    }
+
+    private void checkIndex(int index) {
+
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+    }
+
+    private boolean isFull() {
+        if(size == list.length)
+            return true;
+        else
+            return false;
     }
 }
