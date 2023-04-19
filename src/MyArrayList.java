@@ -65,4 +65,41 @@ public class MyArrayList<T> implements MyList<T>{
 
         list = newArr;
     }
+
+    public boolean remove(T item) {
+
+        for (int i = 0; i < size; i++) {
+
+            if (list[i].equals(item)) {
+
+                remove(i);
+
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public T remove(int index) {
+
+        checkIndex(index);
+
+        T removedItem = (T) list[index];
+
+        for (int i = index; i < size - 1; i++) {
+            list[i] = list[i + 1];
+        }
+
+        size--;
+        list[size] = null;
+
+        return removedItem;
+    }
+
+    private void checkIndex(int index) {
+
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+    }
 }
