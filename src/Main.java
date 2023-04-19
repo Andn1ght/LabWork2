@@ -10,6 +10,7 @@ public class Main {
         myList.add(3);
         myList.add(4);
         myList.add(5);
+        System.out.println();
         System.out.println("After adding 5 elements: " + myList);
 
         // Test add(index) method
@@ -50,39 +51,72 @@ public class Main {
         myList.sort();
         System.out.println("After sorting: " + myList);
 
+        System.out.println();
+        System.out.println("-----------------------------------------------");
+        System.out.println();
 
         // Test MyLinkedList
         MyList<String> list = new MyLinkedList<>();
+
+        // Test add() method
         list.add("Apple");
         list.add("Banana");
         list.add("Cherry");
         list.add("Durian");
         list.add("Elderberry");
 
+        // Test size() method
         System.out.println("Size of the list: " + list.size());
+
+        // Test contains() method
         System.out.println("List contains \"Apple\": " + list.contains("Apple"));
         System.out.println("List contains \"Mango\": " + list.contains("Mango"));
+
+        // Test get() method
         System.out.println("Item at index 3: " + list.get(3));
+
+        // Test indexOf() method
         System.out.println("Index of \"Durian\": " + list.indexOf("Durian"));
+
+        // Test lastIndexOf() method
         System.out.println("Last index of \"Banana\": " + list.lastIndexOf("Banana"));
 
+        // Test remove() method
         System.out.println("Removing \"Cherry\" from list...");
         list.remove("Cherry");
+
+        // Test size() method
         System.out.println("Size of the list: " + list.size());
+
+        // Test indexOf() method
         System.out.println("Index of \"Cherry\": " + list.indexOf("Cherry"));
 
+        // Test add() method
         System.out.println("Adding \"Grapes\" to index 2...");
         list.add("Grapes", 2);
+
+        // Test size() method
         System.out.println("Size of the list: " + list.size());
+
+        // Test get() method
         System.out.println("Item at index 2: " + list.get(2));
 
+
+        // Test remove() method
         System.out.println("Removing item at index 4...");
         list.remove(4);
+
+        // Test size() method
         System.out.println("Size of the list: " + list.size());
+
+        // Test get() method
         System.out.println("Item at index 4: " + list.get(4));
 
+        // Test clear() method
         System.out.println("Clearing the list...");
         list.clear();
+
+        // Test size() method
         System.out.println("Size of the list: " + list.size());
     }
 
