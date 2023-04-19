@@ -126,4 +126,16 @@ public class MyArrayList<T> implements MyList<T>{
 
         return -1;
     }
+
+    public int lastIndexOf(Object o) {
+
+        for (int i = size - 1; i >= 0; i--) {
+
+            if (list[i].equals(o)) {
+                return i;
+            }
+
+        }
+        return -1;
+    }
 }
