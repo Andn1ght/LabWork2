@@ -113,5 +113,17 @@ public class MyArrayList<T> implements MyList<T>{
         return (T) list[index];
     }
 
+    public int indexOf(Object o) {
 
+        for (int i = 0; i < size; i++) {
+
+            if (list[i].equals(o)) {
+
+                return i;
+            }
+
+        }
+
+        return -1;
+    }
 }
