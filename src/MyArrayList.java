@@ -102,4 +102,9 @@ public class MyArrayList<T> implements MyList<T>{
             throw new IndexOutOfBoundsException();
         }
     }
+
+    public void clear() {
+        this.list = (T[]) new Object[DEFAULT_CAPACITY];
+        this.size = 0;
+    }
 }
