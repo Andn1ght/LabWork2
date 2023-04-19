@@ -1,5 +1,5 @@
 public class MyArrayList<T> implements MyList<T>{
-    private Object[] list;
+    private T[] list;
     private int size;
     private final int DEFAULT_CAPACITY = 10;
 
@@ -33,17 +33,22 @@ public class MyArrayList<T> implements MyList<T>{
         return false;
     }
 
+    private boolean isFull() {
+        if(size == list.length)
+            return true;
+        else
+            return false;
+    }
+
     public void add(T item) {
         add(item, size);
     }
 
     public void add(T item, int index) {
 
-        if (index < 0 || index > size) {
-            throw new IndexOutOfBoundsException();
-        }
+        checkIndex(index);
 
-        if (size == list.length) {
+        if (isFull()) {
             increaseBuffer();
         }
 
@@ -137,5 +142,28 @@ public class MyArrayList<T> implements MyList<T>{
 
         }
         return -1;
+    }
+
+    public void sort() {
+        bubbleSort(this.list);
+    }
+
+    private void bubbleSort(T[] arr) {
+        boolean sorted = false;
+        int length = arr.length;
+        T temp;
+
+        while (!sorted) {
+            sorted = true;
+            for (int i = 0; i < length - 1; i++) {
+                if (((Comparable<T>) arr[i]).compareTo(arr[i + 1]) > 0) {
+                    temp = arr[i];
+                    arr[i] = arr[i + 1];
+                    arr[i + 1] = temp;
+                    sorted = false;
+                }
+            }
+            length--;
+        }
     }
 }
