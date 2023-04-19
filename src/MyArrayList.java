@@ -41,8 +41,7 @@ public class MyArrayList<T> implements MyList<T>{
             increaseBuffer();
         }
 
-        list[size] = item;
-        size++;
+        list[size++] = item;
     }
 
     public void add(T item, int index) {
@@ -53,8 +52,8 @@ public class MyArrayList<T> implements MyList<T>{
             increaseBuffer();
         }
 
-        for (int i = size; i > index; i--) {
-            list[i] = list[i - 1];
+        for (int i = size - 1; i >= index; i--) {
+            list[i + 1] = list[i];
         }
 
         list[index] = item;
@@ -131,7 +130,21 @@ public class MyArrayList<T> implements MyList<T>{
         Arrays.sort(list, 0, size);
     }
 
-    public void increaseBuffer(){
+    public String toString() {
+        if(size == 0) {
+            return "[]";
+        }
+        String result = "[";
+        for(int i=0; i < size; i++) {
+            result = result + list[i] + ", ";
+        }
+        result = result.substring(0,result.length()-2);
+        result = result + "]";
+        return result;
+    }
+
+    //*************************
+    private void increaseBuffer(){
 
         T[] newArr = (T[]) new Object[list.length * 2];
 
@@ -144,7 +157,7 @@ public class MyArrayList<T> implements MyList<T>{
 
     private void checkIndex(int index) {
 
-        if (index < 0 || index >= size) {
+        if (index < 0 || index > size) {
             throw new IndexOutOfBoundsException();
         }
     }
